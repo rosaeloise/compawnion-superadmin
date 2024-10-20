@@ -6,6 +6,24 @@ import Input from '../components/Input';
 import '../css/login.css';
 
 class Login extends React.Component {
+	constructor(props) {
+		super(props);
+		// Create refs to get form input values
+		this.passwordRef = React.createRef();
+	}
+
+	handleLogin = () => {
+		const password = this.passwordRef.current.value;
+
+		// You can handle the login logic here
+		// For example, check if the credentials match some values
+		if (password === '9Xg!5hL#r2&V7p@Qm*Dw4jYs3Z') {
+			// Redirect or perform login success action
+			window.location.hash = '/applications';
+		} else {
+			alert('Invalid password');
+		}
+	};
 	render() {
 		return (
 			<>
@@ -34,6 +52,7 @@ class Login extends React.Component {
 						/> */}
 
 						<Input
+							ref={this.passwordRef}
 							placeholder='Password'
 							type='password'
 						/>
@@ -42,9 +61,7 @@ class Login extends React.Component {
 					<Button
 						type='button'
 						theme='dark'
-						onClick={() => {
-							window.location.hash = '/applications';
-						}}
+						onClick={this.handleLogin}
 					>Login</Button>
 
 					<svg viewBox='0 0 943 1015' id='pawBackground'>
@@ -55,7 +72,7 @@ class Login extends React.Component {
 						<path d='M806.197 219.445C802.778 250.355 791.964 264.909 770.688 286.219C754.55 307.998 740.449 331.539 718.905 329.156C677.899 324.62 650.497 268.146 657.701 203.019C664.905 137.892 703.987 88.7728 744.993 93.3088C785.999 97.8447 813.401 154.318 806.197 219.445Z' fill='var(--primary-color)' />
 					</svg>
 
-					<p id='support'><a href='mailto:compawnion@gmail.com'>Contact Support</a></p>
+					<p id='support'><a href='mailto:barkcodecompawnion@gmail.com'>Contact Support</a></p>
 				</form>
 			</>
 		)
