@@ -97,6 +97,8 @@ span {
 }
 .button[small="true"] {
 	padding: 0.5rem 4rem;
+	font-weight: 600;
+	
 }
 .button:hover {
 	background-color: var(--primary-complement);

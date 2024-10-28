@@ -15,6 +15,7 @@ class Applications extends React.Component {
 						<Button
 							title='Add New Admin'
 							id='addNewAdmin'
+							size='small'
 							onClick={() => {
 								window.location.hash = '/admins/add';
 							}}
@@ -108,6 +109,17 @@ class Applications extends React.Component {
 						</tr>
 					</table>
 				</section>
+				<div id='logout'
+					onClick={() => {
+						window.location.hash = '/';
+					}}
+				>
+					<svg viewBox='0 0 26 26'>
+						<rect x='0.486328' y='0.796021' width='25' height='25' rx='12.5' fill='var(--primary-compliment)' />
+						<path d='M6.73633 13.296L9.08008 15.6398M6.73633 13.296H13.7676M6.73633 13.296L9.08008 10.9523M12.9863 10.796V8.29602C12.9863 7.60566 13.546 7.04602 14.2363 7.04602H17.9863C18.6767 7.04602 19.2363 7.60566 19.2363 8.29602V18.296C19.2363 18.9864 18.6767 19.546 17.9863 19.546H14.2363C13.546 19.546 12.9863 18.9864 12.9863 18.296V15.796' stroke='var(--white)' strokeWidth='1' strokeLinecap='round' fill='transparent' />
+					</svg>
+					<p>Logout</p>
+				</div>
 			</main>
 		)
 	};

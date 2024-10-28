@@ -1,16 +1,14 @@
 #userAdmins {
-	position: absolute;
-	width: calc(100% - 16rem);
+	position: relative;
+	width: calc(100% - 8rem);
 	min-height: calc(100% - 16rem);
 	top: 0;
-
-	padding: 8rem;
+	padding: 4rem;
 	display: flex;
 	justify-content: left;
-	align-items: start;
+	align-items: center;
 	flex-direction: column;
 	gap: 4rem;
-
 	transition: width var(--transition), left var(--transition);
 }
 
@@ -102,4 +100,25 @@
 #userAdmins > #adminAccount > #adminList > tr > th:last-child,
 #userAdmins > #adminAccount > #adminList > tr > td:last-child {
 	text-align: center;
+}
+#userAdmins > #logout {
+	position: fixed;
+	bottom: 0;
+	width: fit-content;
+	margin-bottom: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+	cursor: pointer;
+}
+#userAdmins > #logout > svg {
+	width: 2.75rem;
+	height: 2.75rem;
+}
+#userAdmins > #logout > p {
+	font-weight: 600;
 }
