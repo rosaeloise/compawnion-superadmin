@@ -9,11 +9,8 @@ import {
 import './css/global.css';
 
 import Login from './pages/Login';
-// import Dashboard from './pages/Dashboard';
-// import Rescues from './pages/Rescues';
-import AddRescuedPet from './pages/AddRescuedPet';
-import Applications from './pages/Applications';
-// import Compawnions from './pages/Compawnions';
+import AddAdminUser from './pages/AddAdminUser';
+import Admins from './pages/Admins';
 
 class App extends
     React.Component {
@@ -23,12 +20,8 @@ class App extends
                 <Routes>
                     <Route path='/' element={<Login />} />
                     <Route path='/login' element={<Login />} />
-
-                    {/* <Route path='/dashboard' element={<Dashboard />} /> */}
-                    {/* <Route path='/rescues' element={<Rescues />} /> */}
-                    <Route path='/rescues/add' element={<AddRescuedPet />} />
-                    <Route path='/applications' element={<Applications />} />
-                    {/* <Route path='/compawnions' element={<Compawnions />} /> */}
+					<Route path='/admin/add' element={<AddAdminUser />} />
+					<Route path='/admins' element={<Admins />} />
                 </Routes>
             </HashRouter>
         );

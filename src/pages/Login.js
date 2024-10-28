@@ -1,28 +1,39 @@
 import React from 'react';
-
 import Button from '../components/Button';
 import Input from '../components/Input';
-
 import '../css/login.css';
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		// Create refs to get form input values
-		this.passwordRef = React.createRef();
 	}
 
 	handleLogin = () => {
-		const password = this.passwordRef.current.value;
+		const passwordElement = document.getElementById('password');
+		const password = passwordElement.value;
 
-		// You can handle the login logic here
-		// For example, check if the credentials match some values
-		if (password === '9Xg!5hL#r2&V7p@Qm*Dw4jYs3Z') {
-			// Redirect or perform login success action
-			window.location.hash = '/applications';
-		} else {
-			alert('Invalid password');
-		}
+		//password === 9Xg!5hL#r2&V7p@Qm*Dw4jYs3Z
+
+		fetch('http://localhost:3000/superadmin/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				Password: password
+			})
+		})
+			.then(res => res.json())
+			.then(response => {
+				if (response.message === 'Superadmin logged in successfully') {
+					window.location.hash = '/admins';
+					localStorage.setItem('token', response.token);
+				} 
+				else {
+					alert('Wrong password!');
+				};
+			})
+			.catch(err => console.error)
 	};
 	render() {
 		return (
@@ -46,15 +57,10 @@ class Login extends React.Component {
 					</div>
 
 					<div>
-						{/* <Input
-							placeholder='Username'
-							type='text'
-						/> */}
-
 						<Input
-							ref={this.passwordRef}
 							placeholder='Password'
 							type='password'
+							id='password'
 						/>
 					</div>
 

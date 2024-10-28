@@ -95,6 +95,9 @@ span {
 
 	transition: background-color var(--transition), color var(--transition);
 }
+.button[small="true"] {
+	padding: 0.5rem 4rem;
+}
 .button:hover {
 	background-color: var(--primary-complement);
 }

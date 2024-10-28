@@ -10,6 +10,7 @@ class Button extends React.Component {
 					href={this.props.href}
 					title={this.props.title}
 					id={this.props.id}
+					small={`${this.props.size === 'small'}`}
 				>
 					{
 						this.props.size === 'small' ?
@@ -25,6 +26,7 @@ class Button extends React.Component {
 				type={this.props.type || 'button'}
 				onClick={this.props.onClick}
 				id={this.props.id}
+				small={`${this.props.size === 'small'}`}
 			>
 				{
 					this.props.size === 'small' ?

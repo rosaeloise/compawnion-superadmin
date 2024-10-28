@@ -1,0 +1,105 @@
+#userAdmins {
+	position: absolute;
+	width: calc(100% - 16rem);
+	min-height: calc(100% - 16rem);
+	top: 0;
+
+	padding: 8rem;
+	display: flex;
+	justify-content: left;
+	align-items: start;
+	flex-direction: column;
+	gap: 4rem;
+
+	transition: width var(--transition), left var(--transition);
+}
+
+@media (max-width: 75rem) {
+	#sidebarToggle:checked ~ #userAdmins {
+		width: calc(100% - 16rem - 8rem);
+		left: 8rem;
+	}
+
+	#userAdmins {
+		width: calc(100% - 40rem - 16rem);
+		left: 40rem;
+	}
+}
+@media (max-width: 60rem) {
+	#sidebarToggle:checked ~ #userAdmins {
+		width: calc(100% - 8rem - 8rem);
+		left: 8rem;
+	}
+
+	#userAdmins {
+		width: calc(100% - 8rem - 8rem);
+		left: 8rem;
+		padding: 4rem;
+		gap: 4rem;
+	}
+}
+@media (max-width: 40rem) {
+	#userAdmins {
+		width: calc(100% - 8rem - 8rem);
+		padding: 2rem;
+		gap: 2rem;
+	}
+}
+
+#userAdmins > #header {
+	width: calc(100% - 8rem);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	background-color: white;
+	padding: 2rem 4rem;
+	border-radius: 2rem;
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+}
+#userAdmins > #header > main {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+}
+@media (max-width: 60rem) {
+	#userAdmins > #header {
+		gap: 2rem;
+		flex-direction: column;
+	}
+	#userAdmins > #header > main {
+		width: 100%;
+		justify-content: space-between;
+	}
+	#userAdmins > #header > main > .inputDiv,
+	#userAdmins > #header > main > .inputDiv > input {
+		width: 100%;
+	}
+}
+
+#userAdmins > #adminAccount {
+	width: calc(100% - 8rem);
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	background-color: white;
+	padding: 2rem 4rem;
+	border-radius: 2rem;
+	gap: 2rem;
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+}
+
+#userAdmins > #adminAccount > #adminList{
+	width: calc(100% - 8rem);
+}
+
+#userAdmins > #adminAccount > #adminList > tr > th {
+	text-align: left;
+}
+#userAdmins > #adminAccount > #adminList > tr > th:last-child,
+#userAdmins > #adminAccount > #adminList > tr > td:last-child {
+	text-align: center;
+}
