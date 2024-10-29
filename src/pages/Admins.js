@@ -63,7 +63,7 @@ class Admins extends React.Component {
 				<section id='adminAccount'>
 					<Input
 						type='search'
-						placeholder='Search for Name or Pet ID'
+						placeholder='Search for Admin ID, Name or Username'
 						onChange={this.handleSearch}
 						icon={
 							<svg viewBox='0 0 17 15' fill='transparent'>
