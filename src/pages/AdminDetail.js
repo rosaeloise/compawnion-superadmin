@@ -36,30 +36,33 @@ class AdminDetail extends React.Component {
 	}
 
 	async updateAdmin() {
+		const admin = this.state.admin;
 		const AdminId = location.hash.split('/').pop();
 		const Email = document.getElementById('Email').value;
 		const Mobilenumber = document.getElementById('Mobilenumber').value;
 		const Branches = document.getElementById('Branches').value;
 
-		try {
-			const response = await fetch(`http://localhost:3000/admins/${AdminId}`, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					Email,
-					Mobilenumber,
-					Branches
-				})
-			});
-			if (!response.ok) {
-				throw new Error('Failed to update admin details');
-			}
-			window.location.hash = '/admins';
-		} catch (error) {
-			alert('An error occurred. Please try again.');
-		}
+		admin.aStaffInfo.Email = Email;
+		admin.aStaffInfo.Mobilenumber = Mobilenumber;
+		admin.aStaffInfo.Branches = Branches;
+		delete admin.id;
+
+		fetch(`http://localhost:3000/admins/${AdminId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(admin)
+		})
+			.then(res => res.json())
+			.then(response => {
+				if (response.message === 'Admin updated successfully') {
+					window.location.hash = '/admins';
+				} else {
+					alert('Failed to update admin');
+				}
+			})
+			.catch(err => console.error);
 	}
 
 	async deleteAdmin() {
