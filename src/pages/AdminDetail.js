@@ -1,7 +1,7 @@
-// src/pages/AdminDetail.js
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Button from '../components/Button';
+import FormInput from '../components/FormInput';
 
 function AdminDetail() {
 	const { AdminId } = useParams(); // Gets the id from the URL
@@ -33,20 +33,111 @@ function AdminDetail() {
 	if (error) return <p>{error}</p>;
 
 	return (
-		<div>
-			<h2>Admin Details</h2>
+		<form id='addAdminMain'>
+			<header id='header'>
+				<h4>{admin.aStaffInfo.Username}</h4>
+			</header>
 			{admin ? (
-				<div>
-					<p><strong>Name:</strong> {admin.name}</p>
-					<p><strong>Email:</strong> {admin.email}</p>
-					<p><strong>Phone:</strong> {admin.phone}</p>
-					<p><strong>Position:</strong> {admin.position}</p>
-					{/* Add more fields as needed */}
-				</div>
+				<section id='basicInfo'>
+					<div id='image'>
+						<input type='file' name='imageInput' id='imageInput' accept="image/*" />
+						<div id='img' onClick={() => {
+							const imageInput = document.getElementById('imageInput');
+							imageInput.onchange = () => {
+								const file = imageInput.files[0];
+								const img = document.getElementById('img');
+								const reader = new FileReader();
+
+								reader.onload = (e) => {
+									img.style.backgroundImage = `url(${e.target.result})`;
+								};
+
+								if (file) reader.readAsDataURL(file);
+							};
+
+							imageInput.click();
+						}} />
+						<Button
+							title='Upload Image'
+							theme='dark'
+							fill='outline'
+
+							onClick={() => {
+								const img = document.getElementById('img');
+								img.click();
+							}}
+						/>
+					</div>
+
+					<div>
+						<FormInput
+							label='Name'
+							type='text'
+							id='Name'
+							name='Name'
+							value={admin.aStaffInfo.Name}
+							disabled={true}
+						/>
+						<FormInput
+							label='Username'
+							type='text'
+							id='Username'
+							name='Username'
+							value={admin.aStaffInfo.Username}
+							disabled={true}
+						/>
+						<FormInput
+							label='Branch'
+							type='dropdown'
+							id='Branches'
+							name='Branches'
+							placeholder='Select Branch'
+
+							options={[
+								{
+									value: 'Branch 1',
+									label: 'Branch 1'
+								},
+								{
+									value: 'Branch 2',
+									label: 'Branch 2'
+								}
+							]}
+
+						/>
+					</div>
+					<div>
+						<FormInput
+							label='Admin ID'
+							type='text'
+							id='AdminID'
+							name='AdminID'
+							value={admin.id}
+							disabled={true}
+						/>
+						<FormInput
+							label='Email'
+							type='text'
+							id='Email'
+							name='Email'
+							placeholder='Enter Email'
+						/>
+						<FormInput
+							label='Phone Number'
+							type='text'
+							id='Mobilenumber'
+							name='Mobilenumber'
+							placeholder='Enter Phone Number'
+						/>
+						<Button>
+							Generate Password
+						</Button>
+					</div>
+				</section>
 			) : (
 				<p>No admin found</p>
 			)}
-		</div>
+		</form>
 	);
 }
 

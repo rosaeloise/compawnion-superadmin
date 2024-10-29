@@ -93,6 +93,9 @@
 #userAdmins > #adminAccount > #adminList{
 	width: calc(100% - 8rem);
 }
+#userAdmins > #adminAccount > #adminList * {
+	vertical-align: text-top;
+}
 
 #userAdmins > #adminAccount > #adminList > tr > th {
 	text-align: left;
