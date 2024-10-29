@@ -9,7 +9,7 @@ import {
 import './css/global.css';
 
 import Login from './pages/Login';
-import AddAdminUser from './pages/AddAdminUser';
+import AddAdmins from './pages/AddAdmins';
 import Admins from './pages/Admins';
 
 class App extends
@@ -20,7 +20,7 @@ class App extends
                 <Routes>
                     <Route path='/' element={<Login />} />
                     <Route path='/login' element={<Login />} />
-					<Route path='/admin/add' element={<AddAdminUser />} />
+					<Route path='/admins/add' element={<AddAdmins />} />
 					<Route path='/admins' element={<Admins />} />
                 </Routes>
             </HashRouter>

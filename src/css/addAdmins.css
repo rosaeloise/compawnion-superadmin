@@ -1,0 +1,270 @@
+#addAdminMain {
+	position: relative;
+	width: calc(100% - 8rem);
+	min-height: calc(100% - 16rem);
+	top: 0;
+	padding: 4rem;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: column;
+	gap: 4rem;
+	transition: width var(--transition), left var(--transition);
+}
+
+@media (max-width: 75rem) {
+	#sidebarToggle:checked ~ #addAdminMain {
+		width: calc(100% - 16rem - 8rem);
+		left: 8rem;
+	}
+
+	#addAdminMain {
+		width: calc(100% - 40rem - 16rem);
+		left: 40rem;
+	}
+}
+@media (max-width: 60rem) {
+	#sidebarToggle:checked ~ #addAdminMain {
+		width: calc(100% - 8rem - 8rem);
+		left: 8rem;
+	}
+
+	#addAdminMain {
+		width: calc(100% - 8rem - 8rem);
+		left: 8rem;
+		padding: 4rem;
+		gap: 4rem;
+	}
+}
+@media (max-width: 40rem) {
+	#addAdminMain {
+		width: calc(100% - 8rem - 8rem);
+		padding: 2rem;
+		gap: 2rem;
+	}
+}
+
+#addAdminMain > #filter {
+	position: relative;
+	width: calc(100% - 8rem);
+	padding: 2rem 4rem;
+	border-radius: 2rem;
+	background-color: var(--white);
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+	display: flex;
+	justify-content: left;
+	align-items: start;
+	flex-direction: column;
+	gap: 2rem;
+
+	overflow: hidden;
+}
+#addAdminMain > #filter > svg {
+	position: absolute;
+	width: 40rem;
+	height: 40rem;
+	top: 0;
+	left: 75%;
+	z-index: -1;
+}
+#addAdminMain > #filter > div {
+	width: 75%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+}
+#addAdminMain > #filter > div > * {
+	width: 100%;
+	display: block;
+}
+#addAdminMain > #filter > div > input {
+	display: none;
+}
+#addAdminMain > #filter > div > label {
+	padding: 0.5rem 4rem;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: solid 0.5rem var(--primary-complement);
+	color: var(--primary-complement);
+	background-color: var(--white);
+	border-radius: 10rem;
+}
+#addAdminMain > #filter > div > label:hover {
+	background-color: var(--primary-complement);
+	color: var(--white);
+}
+#addAdminMain > #filter > div > input:checked + label {
+	background-color: var(--primary-complement);
+	color: var(--white);
+}
+#addAdminMain > #filter > div > input:checked + label:hover {
+	background-color: var(--primary-complement);
+	color: var(--white);
+}
+@media (max-width: 60rem) {
+	#addAdminMain > #filter {
+		flex-direction: row;
+	}
+	#addAdminMain > #filter > div {
+		flex-direction: column;
+		text-align: center;
+	}
+	#addAdminMain > #filter > div > label {
+		width: calc(100% - 8rem);
+	}
+}
+
+#addAdminMain > #rescues {
+	width: 100%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: column;
+	gap: 4rem;
+}
+@media (max-width: 60rem) {
+	#addAdminMain > #rescues {
+		gap: 2rem;
+	}
+}
+
+#addAdminMain > #rescues > #header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+}
+#addAdminMain > #rescues > #header > form {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+}
+@media (max-width: 60rem) {
+	#addAdminMain > #rescues > #header {
+		gap: 2rem;
+		flex-direction: column;
+	}
+	#addAdminMain > #rescues > #header > form {
+		width: 100%;
+		justify-content: space-between;
+	}
+	#addAdminMain > #rescues > #header > form > .inputDiv,
+	#addAdminMain > #rescues > #header > form > .inputDiv > input {
+		width: 100%;
+	}
+}
+#addAdminMain > #rescues > #petCards {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 4rem;
+}
+
+#addAdminMain {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: column;
+	gap: 4rem;
+}
+
+#addAdminMain > * {
+	width: calc(100% - 8rem);
+	padding: 2rem 4rem;
+	border-radius: 2rem;
+	background-color: var(--white);
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+}
+
+#addAdminMain > #header {
+	width: calc(100% - 8rem);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+}
+#addAdminMain > #header > div {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+}
+@media (max-width: 60rem) {
+	#addAdminMain > #header {
+		flex-direction: column;
+		gap: 2rem;
+		text-align: center;
+	}
+	#addAdminMain > #header > div {
+		width: 100%;
+		justify-content: space-between;
+	}
+	#addAdminMain > #header > div > .button {
+		width: 100%;
+	}
+}
+
+#addAdminMain > #basicInfo {
+	width: calc(100% - 8rem);
+	padding: 4rem 4rem;
+	display: flex;
+	justify-content: left;
+	align-items: flex-start;
+	flex-direction: row;
+	gap: 4rem;
+}
+#addAdminMain > #basicInfo > div {
+	width: 100%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+}
+#addAdminMain > #basicInfo > #image {
+	width: unset;
+}
+#addAdminMain > #basicInfo > #image > #img {
+	width: 24rem;
+	height: 24rem;
+	border-radius: 2rem;
+	border: solid 0.5rem var(--semi-primary-complement);
+	background-color: var(--plain);
+	background-size: cover;
+	background-position: center;
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+}
+#addAdminMain > #basicInfo > #image > input {
+	display: none;
+}
+#addAdminMain > #basicInfo > div > span {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	gap: 2rem;
+}
+@media (max-width: 60rem) {
+	#addAdminMain > #basicInfo {
+		flex-direction: column;
+		gap: 4rem;
+	}
+	#addAdminMain > #basicInfo > div {
+		width: 100%;
+	}
+	#addAdminMain > #basicInfo > #image {
+		width: 100%;
+	}
+}
