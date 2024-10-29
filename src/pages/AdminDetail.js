@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import FormInput from '../components/FormInput';
 
+import '../css/adminDetail.css';
+
 class AdminDetail extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,12 +14,10 @@ class AdminDetail extends React.Component {
 			error: null
 		};
 	}
-
 	componentDidMount() {
 		this.fetchAdmin();
 
 	}
-
 	async fetchAdmin() {
 		// Get the AdminId from the URL
 		console.log('a');
@@ -62,6 +62,22 @@ class AdminDetail extends React.Component {
 		}
 	}
 
+	async deleteAdmin() {
+		const AdminId = location.hash.split('/').pop();
+
+		try {
+			const response = await fetch(`http://localhost:3000/admins/${AdminId}`, {
+				method: 'DELETE'
+			});
+			if (!response.ok) {
+				throw new Error('Failed to delete admin');
+			}
+			window.location.hash = '/admins';
+		} catch (error) {
+			alert('An error occurred. Please try again.');
+		}
+	}
+
 	render() {
 		const { admin, loading, error } = this.state;
 
@@ -69,12 +85,12 @@ class AdminDetail extends React.Component {
 		if (error) return <p>{error}</p>;
 
 		return (
-			<form id='addAdminMain'>
+			<form id='adminDetailsMain'>
 				<header id='header'>
 					<h4>{admin.aStaffInfo.Username}</h4>
 				</header>
 				{admin ? (
-					<section id='basicInfo'>
+					<section id='accountInfo'>
 						<div id='image'>
 							<img id='img' src={admin.aStaffInfo.Picture} />
 						</div>
@@ -142,7 +158,7 @@ class AdminDetail extends React.Component {
 						id='cancel'
 						size='small'
 						onClick={() => {
-							window.location.hash = '/admins/delete';
+							{ this.deleteAdmin() };
 						}}
 					/>
 					<Button
@@ -159,7 +175,7 @@ class AdminDetail extends React.Component {
 						size='small'
 						theme='dark'
 						onClick={() => {
-							window.location.hash = '/admins';
+							{ window.location.hash = '/admins' };
 						}}
 					/>
 				</div>

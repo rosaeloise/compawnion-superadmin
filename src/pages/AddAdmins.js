@@ -111,11 +111,26 @@ class AddRescuedPet extends React.Component {
 								placeholder='Enter Name'
 							/>
 							<FormInput
+								label='Admin ID'
+								type='text'
+								id='AdminID'
+								name='AdminID'
+								value='###-###'
+								disabled={true}
+							/>
+							<FormInput
 								label='Username'
 								type='text'
 								id='Username'
 								name='Username'
 								placeholder='Enter Username'
+							/>
+							<FormInput
+								label='Email'
+								type='text'
+								id='Email'
+								name='Email'
+								placeholder='Enter Email'
 							/>
 							<FormInput
 								label='Branch'
@@ -134,31 +149,6 @@ class AddRescuedPet extends React.Component {
 										label: 'Branch 2'
 									}
 								]}
-
-							/>
-							<FormInput
-								label='Password'
-								type='text'
-								id='Password'
-								name='Password'
-								placeholder='Generate Password'
-							/>
-						</div>
-						<div>
-							<FormInput
-								label='Admin ID'
-								type='text'
-								id='AdminID'
-								name='AdminID'
-								value='###-###'
-								disabled={true}
-							/>
-							<FormInput
-								label='Email'
-								type='text'
-								id='Email'
-								name='Email'
-								placeholder='Enter Email'
 							/>
 							<FormInput
 								label='Phone Number'
@@ -167,9 +157,21 @@ class AddRescuedPet extends React.Component {
 								name='Mobilenumber'
 								placeholder='Enter Phone Number'
 							/>
-							<Button>
-								Generate Password
-							</Button>
+							<FormInput
+								label='Password'
+								type='text'
+								id='Password'
+								name='Password'
+								placeholder='Generate Password'
+							/>
+							<div>
+								<Button onClick={() => {
+									const password = Math.random().toString(36).slice(-10);
+									document.getElementById('Password').value = password;
+								}}>
+									Generate Password
+								</Button>
+							</div>
 						</div>
 					</section>
 					<div>
