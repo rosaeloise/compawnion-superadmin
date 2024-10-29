@@ -5,8 +5,44 @@ import Input from '../components/Input';
 
 import '../css/admin.css';
 
-class Applications extends React.Component {
+class Admins extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			admins: [],
+			searchTerm: '',
+		};
+	}
+
+	async componentDidMount() {
+		await this.fetchAdmins();
+	}
+
+	// Fetch all admins from the API
+	fetchAdmins = async () => {
+		try {
+			const response = await fetch('http://localhost:3000/admins'); // Replace with your actual API URL
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const data = await response.json();
+			this.setState({ admins: data });
+		} catch (error) {
+			console.error('Error fetching admins:', error);
+		}
+	};
+
+	// Function to handle searching
+	handleSearch = (event) => {
+		this.setState({ searchTerm: event.target.value });
+	};
+
 	render() {
+		const { admins, searchTerm } = this.state;
+		const filteredAdmins = admins.filter(admin =>
+			admin.aStaffInfo.Username.includes(searchTerm) || admin.aStaffInfo.Name.includes(searchTerm)
+		);
+
 		return (
 			<main id='userAdmins'>
 				<header id='header'>
@@ -27,6 +63,7 @@ class Applications extends React.Component {
 					<Input
 						type='search'
 						placeholder='Search for Name or Pet ID'
+						onChange={this.handleSearch}
 						icon={
 							<svg viewBox='0 0 17 15' fill='transparent'>
 								<path d='M11.5485 8.68585C11.839 8.01588 12 7.27674 12 6.5C12 3.46243 9.53757 1 6.5 1C3.46243 1 1 3.46243 1 6.5C1 9.53757 3.46243 12 6.5 12C7.72958 12 8.86493 11.5965 9.78085 10.9147M11.5485 8.68585L14.8235 10.8921C15.4731 11.3297 15.6449 12.2109 15.2073 12.8605C14.7698 13.51 13.8885 13.6819 13.239 13.2443L9.78085 10.9147M11.5485 8.68585C11.1629 9.57534 10.549 10.3429 9.78085 10.9147' stroke='var(--primary-complement)' strokeWidth='2' />
@@ -42,71 +79,26 @@ class Applications extends React.Component {
 							<th>Shelter Branch</th>
 							<th>Actions</th>
 						</tr>
-						<tr>
-							<td>000-000</td>
-							<td>rosaeloise</td>
-							<td>Ely Rose Bosangit</td>
-							<td>sample@email.com</td>
-							<td>Branch 1</td>
-							<td>
-								<Button
-									title='View'
-									size='small'
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>000-000</td>
-							<td>rosaeloise</td>
-							<td>Ely Rose Bosangit</td>
-							<td>sample@email.com</td>
-							<td>Branch 1</td>
-							<td>
-								<Button
-									title='View'
-									size='small'
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>000-000</td>
-							<td>rosaeloise</td>
-							<td>Ely Rose Bosangit</td>
-							<td>sample@email.com</td>
-							<td>Branch 1</td>
-							<td>
-								<Button
-									title='View'
-									size='small'
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>000-000</td>
-							<td>rosaeloise</td>
-							<td>Ely Rose Bosangit</td>
-							<td>sample@email.com</td>
-							<td>Branch 1</td>
-							<td>
-								<Button
-									title='View'
-									size='small'
-								/>
-							</td>
-						</tr>
-						<tr>
-							<td>000-000</td>
-							<td>rosaeloise</td>
-							<td>Ely Rose Bosangit</td>
-							<td>sample@email.com</td>
-							<td>Branch 1</td>
-							<td>
-								<Button
-									title='View'
-									size='small'
-								/>
-							</td>
-						</tr>
+						<tbody>
+							{filteredAdmins.map((admin) => (
+								<tr key={admin.id}>
+									<td>{admin.id}</td>
+									<td>{admin.aStaffInfo.Username}</td>
+									<td>{admin.aStaffInfo.Name}</td>
+									<td>{admin.aStaffInfo.Email}</td>
+									<td>{admin.aStaffInfo.Branches}</td>
+									<td>
+										<Button
+											title='View'
+											size='small'
+											onClick={() => {
+												window.location.hash = `/admins/${admin.id}`; // Navigate to View Admin page
+											}}
+										/>
+									</td>
+								</tr>
+							))}
+						</tbody>
 					</table>
 				</section>
 				<div id='logout'
@@ -126,4 +118,4 @@ class Applications extends React.Component {
 
 };
 
-export default Applications;
+export default Admins;
