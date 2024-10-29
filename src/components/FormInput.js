@@ -20,13 +20,13 @@ class FormInput extends React.Component {
 				<select
 					id={this.props.id}
 					name={this.props.name}
-					value={this.props.value}
+					defaultValue={this.props.value}
 					onChange={this.props.onChange}
 					disabled={this.props.disabled}
 				>
 					{this.props.options.map((option, index) => {
 						return (
-							<option key={index} value={option.value}>{option.label}</option>
+							<option key={index} defaultValue={option.value}>{option.label}</option>
 						);
 					})}
 				</select>
@@ -40,7 +40,7 @@ class FormInput extends React.Component {
 					id={this.props.id}
 					name={this.props.name}
 					placeholder={this.props.placeholder}
-					value={this.props.value}
+					defaultValue={this.props.value}
 					onChange={this.props.onChange}
 					disabled={this.props.disabled}
 				/>
@@ -55,7 +55,7 @@ class FormInput extends React.Component {
 					id={this.props.id}
 					name={this.props.name}
 					placeholder={this.props.placeholder}
-					value={this.props.value}
+					defaultValue={this.props.value}
 					onChange={this.props.onChange}
 					disabled={this.props.disabled}
 				/>
@@ -75,7 +75,7 @@ class FormInput extends React.Component {
 					id={this.props.id}
 					name={this.props.name}
 					placeholder={this.props.placeholder}
-					value={this.props.value}
+					defaultValue={this.props.value}
 					onChange={this.props.onChange}
 					disabled={this.props.disabled}
 				/>
