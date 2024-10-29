@@ -11,6 +11,7 @@ import './css/global.css';
 import Login from './pages/Login';
 import AddAdmins from './pages/AddAdmins';
 import Admins from './pages/Admins';
+import AdminDetail from './pages/AdminDetail';
 
 class App extends
     React.Component {
@@ -22,6 +23,7 @@ class App extends
                     <Route path='/login' element={<Login />} />
 					<Route path='/admins/add' element={<AddAdmins />} />
 					<Route path='/admins' element={<Admins />} />
+					<Route path='/admins/:AdminId' element={<AdminDetail />} />
                 </Routes>
             </HashRouter>
         );

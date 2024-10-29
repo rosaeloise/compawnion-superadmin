@@ -13,6 +13,7 @@ class AddRescuedPet extends React.Component {
 		const saveButton = document.getElementById('save');
 		saveButton.addEventListener('click', () => {
 			saveButton.disabled = true;
+			const AdminID = document.getElementById('AdminID')?.value || '';
 			const Name = document.getElementById('Name')?.value || '';
 			const Username = document.getElementById('Username')?.value || '';
 			const Branches = document.getElementById('Branches')?.value || '';
@@ -32,6 +33,7 @@ class AddRescuedPet extends React.Component {
 				reader.onload = () => {
 					const imageBase64 = reader.result;
 					const data = {
+						AdminID,
 						Name,
 						Username,
 						Branches,
