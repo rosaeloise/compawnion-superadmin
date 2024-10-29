@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import FormInput from '../components/FormInput';
 
-function AdminDetail() {
+const AdminDetail = () => {
 	const { AdminId } = useParams(); // Gets the id from the URL
 	const [admin, setAdmin] = useState(null); // State to store admin details
 	const [loading, setLoading] = useState(true); // Loading state
@@ -61,7 +61,6 @@ function AdminDetail() {
 							title='Upload Image'
 							theme='dark'
 							fill='outline'
-
 							onClick={() => {
 								const img = document.getElementById('img');
 								img.click();
@@ -92,18 +91,10 @@ function AdminDetail() {
 							id='Branches'
 							name='Branches'
 							placeholder='Select Branch'
-
 							options={[
-								{
-									value: 'Branch 1',
-									label: 'Branch 1'
-								},
-								{
-									value: 'Branch 2',
-									label: 'Branch 2'
-								}
+								{ value: 'Branch 1', label: 'Branch 1' },
+								{ value: 'Branch 2', label: 'Branch 2' }
 							]}
-
 						/>
 					</div>
 					<div>
