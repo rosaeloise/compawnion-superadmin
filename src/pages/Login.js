@@ -6,7 +6,16 @@ import '../css/login.css';
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			showPassword: false, // State to toggle password visibility
+		};
 	}
+
+	togglePasswordVisibility = () => {
+		this.setState(prevState => ({
+			showPassword: !prevState.showPassword,
+		}));
+	};
 
 	handleLogin = () => {
 		const passwordElement = document.getElementById('password');
@@ -54,12 +63,24 @@ class Login extends React.Component {
 						<h5>Super Admin Login</h5>
 					</div>
 
-					<div>
+					<div className='formGroup'>
+						<div className="passwordWrapper">
 						<Input
-							placeholder='Password'
-							type='password'
+								placeholder='Password'
 							id='password'
+								type={this.state.showPassword ? 'text' : 'password'}
 						/>
+							<button
+								type="button"
+								className="toggle-password-btn"
+								onClick={this.togglePasswordVisibility}
+								aria-label={
+									this.state.showPassword ? 'Hide password' : 'Show password'
+								}
+							>
+								{this.state.showPassword ? 'Hide' : 'Show'}
+							</button>
+						</div>
 					</div>
 
 					<Button
