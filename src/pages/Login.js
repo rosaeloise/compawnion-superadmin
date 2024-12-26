@@ -12,9 +12,7 @@ class Login extends React.Component {
 		const passwordElement = document.getElementById('password');
 		const password = passwordElement.value;
 
-		//password === 9Xg!5hL#r2&V7p@Qm*Dw4jYs3Z
-
-		fetch('http://localhost:3000/superadmin/login', {
+		fetch('https://compawnion-backend.onrender.com/superadmin/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

@@ -43,7 +43,7 @@ class AddRescuedPet extends React.Component {
 						Picture: imageBase64,
 					};
 
-					fetch('http://localhost:3000/Admins/register', {
+					fetch('https://compawnion-backend.onrender.com/Admins/register', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'

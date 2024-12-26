@@ -24,7 +24,7 @@ class AdminDetail extends React.Component {
 		const AdminId = location.hash.split('/').pop();
 
 		try {
-			const response = await fetch(`http://localhost:3000/admins/${AdminId}`);
+			const response = await fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`);
 			if (!response.ok) {
 				throw new Error('Failed to fetch admin details');
 			}
@@ -47,7 +47,7 @@ class AdminDetail extends React.Component {
 		admin.aStaffInfo.Branches = Branches;
 		delete admin.id;
 
-		fetch(`http://localhost:3000/admins/${AdminId}`, {
+		fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ class AdminDetail extends React.Component {
 		const AdminId = location.hash.split('/').pop();
 
 		try {
-			const response = await fetch(`http://localhost:3000/admins/${AdminId}`, {
+			const response = await fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
 				method: 'DELETE'
 			});
 			if (!response.ok) {

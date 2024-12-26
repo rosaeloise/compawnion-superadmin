@@ -20,7 +20,7 @@ class Admins extends React.Component {
 	// Fetch all admins from the API
 	fetchAdmins = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/admins'); // Replace with your actual API URL
+			const response = await fetch('https://compawnion-backend.onrender.com/admins'); // Replace with your actual API URL
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
