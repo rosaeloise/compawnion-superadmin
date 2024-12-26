@@ -23,12 +23,12 @@ class Login extends React.Component {
 		})
 			.then(res => res.json())
 			.then(response => {
-				if (response.message === 'Superadmin logged in successfully') {
+				if (response.message === 'Super Admin logged in successfully') {
 					window.location.hash = '/admins';
 					localStorage.setItem('token', response.token);
 				} 
 				else {
-					alert('Wrong password!');
+					alert('Wrong Password!');
 				};
 			})
 			.catch(err => console.error)
