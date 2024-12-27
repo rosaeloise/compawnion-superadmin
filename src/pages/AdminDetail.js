@@ -155,10 +155,10 @@ class AdminDetail extends React.Component {
 				) : (
 					<p>No admin found</p>
 				)}
-				<div id='buttonContainer'>
+				<div id='buttonGroup'>
 					<Button
 						title='Delete Account'
-						id='cancel'
+						id='delete'
 						size='small'
 						onClick={() => {
 							{ this.deleteAdmin() };
