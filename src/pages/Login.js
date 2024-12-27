@@ -7,7 +7,7 @@ class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showPassword: false, // State to toggle password visibility
+			showPassword: false,
 		};
 	}
 

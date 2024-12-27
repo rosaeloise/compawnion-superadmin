@@ -80,7 +80,7 @@ span {
 }
 
 .button {
-	padding: 1rem 4rem;
+	padding: 1rem 2.5rem;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -104,13 +104,13 @@ span {
 	background-color: var(--primary-complement);
 }
 .button.outline {
-	border: solid 0.5rem var(--primary-color);
+	border: solid 0.3rem var(--primary-color);
 	background-color: unset;
 	filter: unset;
 	color: var(--primary-color);
 }
 .button.outline:hover {
-	border: solid 0.5rem var(--primary-complement);
+	border: solid 0.3rem var(--primary-complement);
 	color: var(--primary-complement);
 }
 .button.dark {
@@ -121,13 +121,13 @@ span {
 	background-color: var(--primary-color);
 }
 .button.dark.outline {
-	border: solid 0.5rem var(--primary-complement);
+	border: solid 0.3rem var(--primary-complement);
 	background-color: unset;
 	filter: unset;
 	color: var(--primary-complement);
 }
 .button.dark.outline:hover {
-	border: solid 0.5rem var(--primary-color);
+	border: solid 0.3rem var(--primary-color);
 	color: var(--primary-color);
 }
 
