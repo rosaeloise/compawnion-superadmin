@@ -46,6 +46,7 @@ class Admins extends React.Component {
 						<Button
 							title='Add New Admin'
 							id='addNewAdmin'
+							size='small'
 							onClick={() => {
 								window.location.hash = '/admins/add';
 							}}

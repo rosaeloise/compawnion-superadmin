@@ -96,7 +96,7 @@ span {
 	transition: background-color var(--transition), color var(--transition);
 }
 .button[small="true"] {
-	padding: 0.5rem 4rem;
+	padding: 0.3rem 4rem;
 	font-weight: 600;
 	
 }
