@@ -89,7 +89,7 @@ class Admins extends React.Component {
 											theme='dark'
 											fill='outline'
 											onClick={() => {
-												window.location.hash = `/admins/${admin.id}`; // Navigate to View Admin page
+												window.location.hash = `/admins/${admin.id}`;
 											}}
 										/>
 									</td>

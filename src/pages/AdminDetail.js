@@ -19,7 +19,6 @@ class AdminDetail extends React.Component {
 
 	}
 	async fetchAdmin() {
-		// Get the AdminId from the URL
 		console.log('a');
 		const AdminId = location.hash.split('/').pop();
 
@@ -29,9 +28,9 @@ class AdminDetail extends React.Component {
 				throw new Error('Failed to fetch admin details');
 			}
 			const data = await response.json();
-			this.setState({ admin: data, loading: false }); // Set admin data in state
+			this.setState({ admin: data, loading: false });
 		} catch (error) {
-			this.setState({ error: error.message, loading: false }); // Set error message in state
+			this.setState({ error: error.message, loading: false });
 		}
 	}
 
