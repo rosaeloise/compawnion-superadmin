@@ -20,14 +20,31 @@
 	align-items: center;
 	gap: 2rem;
 }
-#loginForm > div > h5 {
-	text-align: center;
-}
+
 #loginForm > div > #logo {
 	height: 8rem;
 }
+
+#loginForm > div > h5 {
+	text-align: center;
+}
+
 #loginForm > div > .input {
 	width: 36rem;
+}
+
+#loginForm > #formGroup > #passwordWrapper {
+	display: flex;
+	align-items: center;
+}
+
+#loginForm > #formGroup > #passwordWrapper > #togglePasswordVisibility {
+	margin-left: 10px;
+	cursor: pointer;
+	background: none;
+	border: none;
+	color: var(--primary-color);
+	font-size: 14px;
 }
 
 #loginForm > #pawBackground {

@@ -32,12 +32,12 @@ class Login extends React.Component {
 		})
 			.then(res => res.json())
 			.then(response => {
-				if (response.message === 'Super Admin logged in successfully') {
+				if (response.message === 'Superadmin logged in successfully') {
 					window.location.hash = '/admins';
 					localStorage.setItem('token', response.token);
 				} 
 				else {
-					alert('Wrong Password!');
+					alert('Wrong password!');
 				};
 			})
 			.catch(err => console.error)
@@ -63,16 +63,16 @@ class Login extends React.Component {
 						<h5>Super Admin Login</h5>
 					</div>
 
-					<div className='formGroup'>
-						<div className="passwordWrapper">
+					<div id='formGroup'>
+						<div id='passwordWrapper'>
 						<Input
 								placeholder='Password'
-							id='password'
 								type={this.state.showPassword ? 'text' : 'password'}
-						/>
+								id='password'
+							/>
 							<button
 								type="button"
-								className="toggle-password-btn"
+								id="togglePasswordVisibility"
 								onClick={this.togglePasswordVisibility}
 								aria-label={
 									this.state.showPassword ? 'Hide password' : 'Show password'
@@ -80,6 +80,7 @@ class Login extends React.Component {
 							>
 								{this.state.showPassword ? 'Hide' : 'Show'}
 							</button>
+
 						</div>
 					</div>
 
