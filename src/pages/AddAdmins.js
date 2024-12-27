@@ -91,9 +91,10 @@ class AddRescuedPet extends React.Component {
 								imageInput.click();
 							}} />
 							<Button
-								title='Upload Image'
+								title='Add an Image'
 								theme='dark'
 								fill='outline'
+								size='small'
 
 								onClick={() => {
 									const img = document.getElementById('img');
@@ -152,7 +153,7 @@ class AddRescuedPet extends React.Component {
 							/>
 							<FormInput
 								label='Phone Number'
-								type='text'
+								type='number'
 								id='Mobilenumber'
 								name='Mobilenumber'
 								placeholder='Enter Phone Number'
@@ -165,7 +166,10 @@ class AddRescuedPet extends React.Component {
 								placeholder='Generate Password'
 							/>
 							<div>
-								<Button onClick={() => {
+								<Button
+									size='small'
+									fill='outline'
+									onClick={() => {
 									const password = Math.random().toString(36).slice(-10);
 									document.getElementById('Password').value = password;
 								}}>
@@ -174,15 +178,16 @@ class AddRescuedPet extends React.Component {
 							</div>
 						</div>
 					</section>
-					<div>
+					<div id='buttonGroup'>
 						<Button
 							title='Save'
 							id='save'
+							size='small'
 						/>
 						<Button
 							title='Cancel'
 							theme='dark'
-
+							size='small'
 							onClick={() => {
 								window.location.hash = '/admins';
 							}}
