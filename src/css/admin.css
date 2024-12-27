@@ -100,10 +100,18 @@
 #userAdmins > #adminAccount > #adminList > tr > th {
 	text-align: left;
 }
-#userAdmins > #adminAccount > #adminList > tr > th:last-child,
-#userAdmins > #adminAccount > #adminList > tr > td:last-child {
+#userAdmins > #adminAccount > #adminList > tr > th:last-child {
 	text-align: center;
 }
+
+#userAdmins > #adminAccount > #adminList > tr > #actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 1rem;
+}
+
 #userAdmins > #logout {
 	position: fixed;
 	bottom: 0;
@@ -117,6 +125,10 @@
 	flex-direction: row;
 	gap: 2rem;
 	cursor: pointer;
+	background-color: white;
+	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
+	padding: 1rem 2rem;
+	border-radius: 10rem;
 }
 #userAdmins > #logout > svg {
 	width: 2.75rem;

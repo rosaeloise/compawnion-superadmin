@@ -17,10 +17,9 @@ class Admins extends React.Component {
 		await this.fetchAdmins();
 	}
 
-	// Fetch all admins from the API
 	fetchAdmins = async () => {
 		try {
-			const response = await fetch('https://compawnion-backend.onrender.com/admins'); // Replace with your actual API URL
+			const response = await fetch('https://compawnion-backend.onrender.com/admins');
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
@@ -31,11 +30,6 @@ class Admins extends React.Component {
 		} catch (error) {
 			console.error('Error fetching admins:', error);
 		}
-	};
-
-	// Function to handle searching
-	handleSearch = (event) => {
-		this.setState({ searchTerm: event.target.value });
 	};
 
 	render() {
@@ -52,7 +46,6 @@ class Admins extends React.Component {
 						<Button
 							title='Add New Admin'
 							id='addNewAdmin'
-							size='small'
 							onClick={() => {
 								window.location.hash = '/admins/add';
 							}}
@@ -92,6 +85,8 @@ class Admins extends React.Component {
 										<Button
 											title='View'
 											size='small'
+											theme='dark'
+											fill='outline'
 											onClick={() => {
 												window.location.hash = `/admins/${admin.id}`; // Navigate to View Admin page
 											}}
