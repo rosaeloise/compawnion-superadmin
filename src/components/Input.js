@@ -12,6 +12,7 @@ class Input extends React.Component {
 						placeholder={this.props.placeholder}
 						type={this.props.type}
 						id={this.props.id}
+						onChange={this.props.onChange}
 					/>
 				</div>
 			);
@@ -23,6 +24,7 @@ class Input extends React.Component {
 				placeholder={this.props.placeholder}
 				type={this.props.type}
 				id={this.props.id}
+				onChange={this.props.onChange}
 			/>
 		);
 	};

@@ -9,7 +9,8 @@ class Admins extends React.Component {
 		super(props);
 		this.state = {
 			admins: [],
-			searchTerm: '',
+			displayedAdmins: [],
+			searchTerm: ''
 		};
 	}
 
@@ -26,18 +27,25 @@ class Admins extends React.Component {
 			const data = await response.json();
 			console.log(data);
 
-			this.setState({ admins: data });
+			this.setState({ admins: data, displayedAdmins: data });
 		} catch (error) {
 			console.error('Error fetching admins:', error);
 		}
 	};
 
-	render() {
-		const { admins, searchTerm } = this.state;
-		const filteredAdmins = admins.filter(admin =>
-			admin.aStaffInfo.Username.includes(searchTerm) || admin.aStaffInfo.Name.includes(searchTerm)
-		);
+	handleSearch = (string) => {
+		const admins = this.state.admins.filter(admin => {
+			return admin.id.includes(string) || admin.aStaffInfo.Username.includes(string) || admin.aStaffInfo.Name.includes(string) || admin.aStaffInfo.Email.includes(string) || admin.aStaffInfo.Branches.includes(string);
+		});
 
+		if (string === '') {
+			this.setState({ displayedAdmins: this.state.admins });
+		} else {
+			this.setState({ displayedAdmins: admins });
+		};
+	};
+
+	render() {
 		return (
 			<main id='userAdmins'>
 				<header id='header'>
@@ -58,7 +66,9 @@ class Admins extends React.Component {
 					<Input
 						type='search'
 						placeholder='Search for Admin ID, Name or Username'
-						onChange={this.handleSearch}
+						onChange={(e) => {
+							this.handleSearch(e.target.value);
+						}}
 						icon={
 							<svg viewBox='0 0 17 15' fill='transparent'>
 								<path d='M11.5485 8.68585C11.839 8.01588 12 7.27674 12 6.5C12 3.46243 9.53757 1 6.5 1C3.46243 1 1 3.46243 1 6.5C1 9.53757 3.46243 12 6.5 12C7.72958 12 8.86493 11.5965 9.78085 10.9147M11.5485 8.68585L14.8235 10.8921C15.4731 11.3297 15.6449 12.2109 15.2073 12.8605C14.7698 13.51 13.8885 13.6819 13.239 13.2443L9.78085 10.9147M11.5485 8.68585C11.1629 9.57534 10.549 10.3429 9.78085 10.9147' stroke='var(--primary-complement)' strokeWidth='2' />
@@ -75,7 +85,7 @@ class Admins extends React.Component {
 							<th>Actions</th>
 						</tr>
 						<tbody>
-							{filteredAdmins.map((admin) => (
+							{this.state.displayedAdmins.map((admin) => (
 								<tr key={admin.id}>
 									<td>{admin.id}</td>
 									<td>{admin.aStaffInfo.Username}</td>
