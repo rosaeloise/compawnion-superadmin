@@ -11,6 +11,7 @@ class Button extends React.Component {
 					title={this.props.title}
 					id={this.props.id}
 					small={`${this.props.size === 'small'}`}
+					style={this.props.style}
 				>
 					{
 						this.props.size === 'small' ?
@@ -27,6 +28,7 @@ class Button extends React.Component {
 				onClick={this.props.onClick}
 				id={this.props.id}
 				small={`${this.props.size === 'small'}`}
+				style={this.props.style}
 			>
 				{
 					this.props.size === 'small' ?
