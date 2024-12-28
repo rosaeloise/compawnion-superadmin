@@ -3,6 +3,11 @@ import React from 'react';
 import Button from '../components/Button';
 import FormInput from '../components/FormInput';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
+
 import '../css/addAdmins.css';
 
 class AddRescuedPet extends React.Component {
@@ -50,7 +55,16 @@ class AddRescuedPet extends React.Component {
 						},
 						body: JSON.stringify(data)
 					}).then(res => res.json()).then(() => {
-						window.location.hash = '/admins';
+						MySwal.fire({
+							title: <h1>Success</h1>,
+							html: <p>Admin added successfully.</p>,
+							width: '60rem',
+							icon: 'success',
+							confirmButtonText: 'Ok',
+							confirmButtonColor: 'var(--primary-color)'
+						}).then(() => {
+							window.location.hash = '/admins';
+						});
 						saveButton.disabled = false;
 					}).catch(err => {
 						alert('An error occurred. Please try again.');
@@ -66,6 +80,13 @@ class AddRescuedPet extends React.Component {
 	render() {
 		return (
 			<>
+				<svg viewBox='0 0 943 1015' id='pawBackground'>
+					<path d='M891.353 638.114C912.994 717.216 873.044 822.788 821.273 834.888C715.504 887.059 679.07 796.346 596.209 819.016C513.348 841.685 558.279 906.839 427.292 965.908C371.714 986.843 222.774 911.903 199.642 827.353C147.385 636.342 233.595 357.26 424.606 305.003C615.617 252.746 839.096 447.103 891.353 638.114Z' fill='var(--primary-color)' />
+					<path d='M211.833 299.759C244.803 356.384 233.101 417.499 203.039 435.003C167.386 455.762 105.26 438.336 72.2897 381.71C39.3196 325.085 37.4866 235.727 73.1397 214.969C115.391 218.334 178.863 243.133 211.833 299.759Z' fill='var(--primary-color)' />
+					<path d='M376.557 130.274C400.958 191.086 406.97 254.141 368.681 269.505C330.393 284.868 279.573 248.025 255.172 187.213C230.771 126.401 249.12 88.7089 287.409 73.3455C325.698 57.9821 352.157 69.4627 376.557 130.274Z' fill='var(--primary-color)' />
+					<path d='M609.673 121.791C608.187 187.298 573.546 239.645 532.3 238.709C491.055 237.773 467.636 203.027 469.122 137.519C469.74 110.282 487.205 88.1102 495.598 64.4464C507.391 31.1959 513.585 0.937857 537.682 1.48447C578.927 2.4201 611.159 56.2831 609.673 121.791Z' fill='var(--primary-color)' />
+					<path d='M806.197 219.445C802.778 250.355 791.964 264.909 770.688 286.219C754.55 307.998 740.449 331.539 718.905 329.156C677.899 324.62 650.497 268.146 657.701 203.019C664.905 137.892 703.987 88.7728 744.993 93.3088C785.999 97.8447 813.401 154.318 806.197 219.445Z' fill='var(--primary-color)' />
+				</svg>
 				<form id='addAdminMain'>
 					<header id='header'>
 						<h4>Add New User Admin</h4>
@@ -157,6 +178,12 @@ class AddRescuedPet extends React.Component {
 								id='Mobilenumber'
 								name='Mobilenumber'
 								placeholder='Enter Phone Number'
+								onChange={(e) => {
+									const value = e.target.value;
+									if (value.length > 11) {
+										e.target.value = value.slice(0, 11);
+									};
+								}}
 							/>
 							<FormInput
 								label='Password'

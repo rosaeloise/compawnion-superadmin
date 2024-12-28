@@ -1,11 +1,20 @@
+#root:has(> #addAdminMain) > #pawBackground {
+	position: fixed;
+	width: 150%;
+	height: 150%;
+	top: 75%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+}
 #addAdminMain {
 	position: relative;
-	width: calc(100% - 60rem);
+	width: calc(100% - 8rem);
 	min-height: calc(100% - 16rem);
 	top: 0;
 	padding: 4rem;
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 	flex-direction: column;
 	gap: 4rem;
@@ -13,39 +22,28 @@
 }
 
 @media (max-width: 75rem) {
-	#sidebarToggle:checked ~ #addAdminMain {
-		width: calc(100% - 16rem - 8rem);
-		left: 8rem;
-	}
-
 	#addAdminMain {
-		width: calc(100% - 40rem - 16rem);
-		left: 40rem;
+		width: calc(100% - 8rem);
 	}
 }
 @media (max-width: 60rem) {
-	#sidebarToggle:checked ~ #addAdminMain {
-		width: calc(100% - 8rem - 8rem);
-		left: 8rem;
-	}
-
 	#addAdminMain {
-		width: calc(100% - 8rem - 8rem);
-		left: 8rem;
+		width: calc(100% - 8rem);
 		padding: 4rem;
 		gap: 4rem;
 	}
 }
 @media (max-width: 40rem) {
 	#addAdminMain {
-		width: calc(100% - 8rem - 8rem);
+		width: calc(100% - 4rem);
 		padding: 2rem;
 		gap: 2rem;
 	}
 }
 
 #addAdminMain > * {
-	width: calc(100% - 8rem);
+	max-width: calc(100% - 8rem);
+	width: 120rem;
 	padding: 2rem 4rem;
 	border-radius: 2rem;
 	filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.5));
@@ -53,7 +51,6 @@
 }
 
 #addAdminMain > #header {
-	width: calc(100% - 8rem);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -82,7 +79,6 @@
 }
 
 #addAdminMain > #basicInfo {
-	width: calc(100% - 8rem);
 	padding: 4rem 4rem;
 	display: flex;
 	justify-content: left;
@@ -148,7 +144,6 @@
 }
 
 #addAdminMain > #buttonGroup {
-	width: calc(100% - 8rem);
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
