@@ -85,6 +85,7 @@ class Login extends React.Component {
 					</div>
 
 					<Button
+						id='loginButton'
 						type='button'
 						theme='dark'
 						onClick={this.handleLogin}
