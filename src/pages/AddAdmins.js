@@ -27,7 +27,16 @@ class AddRescuedPet extends React.Component {
 			const Mobilenumber = document.getElementById('Mobilenumber')?.value || '';
 
 			if (!Name || !Username || !Branches || !Password || !Email || !Mobilenumber) {
-				alert('Please fill out all fields.');
+				MySwal.fire({
+					title: <h1>Error</h1>,
+					html: <p>Please fill in all fields.</p>,
+					width: '60rem',
+					icon: 'error',
+					iconColor: 'var(--primary-color)',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				});
+				saveButton.disabled = false;
 				return;
 			}
 
@@ -67,12 +76,27 @@ class AddRescuedPet extends React.Component {
 						});
 						saveButton.disabled = false;
 					}).catch(err => {
-						alert('An error occurred. Please try again.');
+						MySwal.fire({
+							title: <h1>Error</h1>,
+							html: <p>Failed to add admin.</p>,
+							width: '60rem',
+							icon: 'error',
+							confirmButtonText: 'Ok',
+							confirmButtonColor: 'var(--primary-color)'
+						});
 						saveButton.disabled = false;
 					});
 				};
 			} else {
-				alert('Please upload an image.');
+				MySwal.fire({
+					title: <h1>Error</h1>,
+					html: <p>Please upload an image.</p>,
+					width: '60rem',
+					icon: 'error',
+					iconColor: 'var(--primary-color)',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				});
 				saveButton.disabled = false;
 			};
 		});
