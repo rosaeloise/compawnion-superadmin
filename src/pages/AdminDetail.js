@@ -24,7 +24,6 @@ class AdminDetail extends React.Component {
 
 	}
 	async fetchAdmin() {
-		console.log('a');
 		const AdminId = location.hash.split('/').pop();
 
 		try {
@@ -181,6 +180,8 @@ class AdminDetail extends React.Component {
 									type='dropdown'
 									id='Branches'
 									name='Branches'
+									value={admin.aStaffInfo.Branches}
+									defaultValue={admin.aStaffInfo.Branches}
 									placeholder='Select Branch'
 									options={[
 										{ value: 'Branch 1', label: 'Branch 1' },
