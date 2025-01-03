@@ -66,7 +66,7 @@ class AddRescuedPet extends React.Component {
 					}).then(async res => {
 						if (!res.ok) {
 							const message = await res.json();
-							throw new Error(res.message);
+							throw new Error(message.message);
 						};
 						return res.json();
 					}).then(() => {
@@ -84,7 +84,10 @@ class AddRescuedPet extends React.Component {
 					}).catch(err => {
 						MySwal.fire({
 							title: <h1>Error</h1>,
-							html: <p>Failed to add admin.</p>,
+							html: <>
+								<p>Failed to add admin.</p>
+								<p>{err.message}</p>
+							</>,
 							width: '60rem',
 							icon: 'error',
 							confirmButtonText: 'Ok',
