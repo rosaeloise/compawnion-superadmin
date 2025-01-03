@@ -81,10 +81,10 @@ class AdminDetail extends React.Component {
 			return;
 		}
 
-		if (Mobilenumber.length < 11) {
+		if (Mobilenumber.length !== 11) {
 			MySwal.fire({
 				title: <h4>Error</h4>,
-				html: <p>Phone number must be at least 11 digits.</p>,
+				html: <p>Phone number must be exactly 11 digits.</p>,
 				width: '60rem',
 				icon: 'error',
 				iconColor: 'var(--primary-color)',
@@ -102,33 +102,95 @@ class AdminDetail extends React.Component {
 			},
 			body: JSON.stringify(admin)
 		})
-			.then(res => res.json())
-			.then(response => {
-				if (response.message === 'Admin updated successfully') {
-					MySwal.fire({
-						title: <h4>Success</h4>,
-						html: <p>Admin updated successfully.</p>,
-						width: '60rem',
-						icon: 'success',
-						confirmButtonText: 'Ok',
-						confirmButtonColor: 'var(--primary-color)'
-					}).then(() => {
-					window.location.hash = '/admins';
-					});
-					saveButton.disabled = false;
-				} else {
-					MySwal.fire({
-						title: <h4>Failed</h4>,
-						html: <p>Failed to update admin.</p>,
-						width: '60rem',
-						icon: 'error',
-						confirmButtonText: 'Ok',
-						confirmButtonColor: 'var(--primary-color)'
-					});
+			.then(async res => {
+				if (!res.ok) {
+					const message = await res.json();
+					throw new Error(message.message);
 				}
+				return res.json();
 			})
-			.catch(err => console.error);
-	}
+			.then(() => {
+				MySwal.fire({
+					title: <h4>Success</h4>,
+					html: <p>Admin updated successfully.</p>,
+					width: '60rem',
+					icon: 'success',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				}).then(() => {
+					window.location.hash = '/admins';
+				});
+				this.updateAdmin.disabled = false;
+			})
+			.catch(err => {
+				MySwal.fire({
+					title: <h4>Error</h4>,
+					html: <>
+						<p>Failed to update admin.</p>
+						<p>{err.message}</p>
+					</>,
+					width: '60rem',
+					icon: 'error',
+					iconColor: 'var(--primary-color)',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				});
+				this.updateAdmin.disabled = false;
+			});
+
+		// 	fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
+		// 		method: 'PUT',
+		// 		headers: {
+		// 			'Content-Type': 'application/json'
+		// 		},
+		// 		body: JSON.stringify(admin)
+		// 	}).then(async res => {
+		// 		if (!res.ok) {
+		// 			const message = await res.json();
+		// 			throw new Error(message.message);
+		// 		};
+		// 		return res.json();
+		// 	}).then(() => {
+		// 				MySwal.fire({
+		// 					title: <h4>Success</h4>,
+		// 					html: <p>Admin updated successfully.</p>,
+		// 					width: '60rem',
+		// 					icon: 'success',
+		// 					confirmButtonText: 'Ok',
+		// 					confirmButtonColor: 'var(--primary-color)'
+		// 				}).then(() => {
+		// 				window.location.hash = '/admins';
+		// 				});
+		// 				saveButton.disabled = false;
+		// 			}).catch(err => {
+		// 				MySwal.fire({
+		// 					title: <h4>Error</h4>,
+		// 					html: <>
+		// 						<p>Failed to add admin.</p>
+		// 						<p>{err.message}</p>
+		// 					</>,
+		// 					width: '60rem',
+		// 					icon: 'error',
+		// 					iconColor: 'var(--primary-color)',
+		// 					confirmButtonText: 'Ok',
+		// 					confirmButtonColor: 'var(--primary-color)'
+		// 				});
+		// 				saveButton.disabled = false;
+		// 			});
+		// 		};
+		// 			} else {
+		// 				MySwal.fire({
+		// 					title: <h4>Failed</h4>,
+		// 					html: <p>Failed to update admin.</p>,
+		// 					width: '60rem',
+		// 					icon: 'error',
+		// 					confirmButtonText: 'Ok',
+		// 					confirmButtonColor: 'var(--primary-color)'
+		// 				});
+		// 				saveButton.disabled = false;
+		// 			};
+		// 		});
+	};
 
 	async deleteAdmin() {
 		MySwal.fire({
@@ -262,10 +324,10 @@ class AdminDetail extends React.Component {
 										if (!value.startsWith('09')) {
 											value = '09' + value.replace(/^09/, '');
 										}
-										e.target.value = value;
-										if (value.length > 12) {
-											e.target.value = value.slice(0, 11);
+										if (value.length > 11) {
+											value = value.slice(0, 11);
 										}
+										e.target.value = value;
 									}}
 								/>
 							</div>
