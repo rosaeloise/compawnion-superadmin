@@ -61,9 +61,26 @@ class AdminDetail extends React.Component {
 			.then(res => res.json())
 			.then(response => {
 				if (response.message === 'Admin updated successfully') {
+					MySwal.fire({
+						title: <h1>Success</h1>,
+						html: <p>Admin updated successfully.</p>,
+						width: '60rem',
+						icon: 'success',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					}).then(() => {
 					window.location.hash = '/admins';
+					});
+					saveButton.disabled = false;
 				} else {
-					alert('Failed to update admin');
+					MySwal.fire({
+						title: <h1>Failed</h1>,
+						html: <p>Failed to update admin.</p>,
+						width: '60rem',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					});
 				}
 			})
 			.catch(err => console.error);
@@ -186,6 +203,12 @@ class AdminDetail extends React.Component {
 									id='Mobilenumber'
 									name='Mobilenumber'
 									value={admin.aStaffInfo.Mobilenumber}
+									onChange={(e) => {
+										const value = e.target.value;
+										if (value.length > 11) {
+											e.target.value = value.slice(0, 11);
+										};
+									}}
 								/>
 							</div>
 						</section>
@@ -203,8 +226,8 @@ class AdminDetail extends React.Component {
 							}}
 						/>
 						<Button
-							title='Save'
-							id='save'
+							title='Update'
+							id='update'
 							size='small'
 							onClick={() => {
 								this.updateAdmin();
