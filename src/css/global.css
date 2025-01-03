@@ -64,14 +64,14 @@ span {
 }
 
 ::-webkit-scrollbar {
-	width: 1.75rem;
+	width: 1.5rem;
 }
 ::-webkit-scrollbar-track {
-	background-color: var(--primary-complement);
+	background-color: var(--plain);
 }
 ::-webkit-scrollbar-thumb {
-	background-color: var(--plain);
-	border: solid 0.5rem var(--primary-complement);
+	background-color: var(--primary-complement);
+	border: solid 0.5rem var(--plain);
 	border-radius: 1rem;
 	transition: background-color var(--transition);
 }
