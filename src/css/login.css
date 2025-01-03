@@ -54,10 +54,6 @@
 	background-color: white;
 }
 
-#loginForm > #loginButton {
-	cursor: pointer;
-}
-
 #loginForm > #pawBackground {
 	position: absolute;
 	width: 100%;

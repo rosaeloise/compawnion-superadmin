@@ -65,7 +65,7 @@ class Admins extends React.Component {
 				<section id='adminAccount'>
 					<Input
 						type='search'
-						placeholder='Search for Admin ID, Name or Username'
+						placeholder='Search for ID, Name or Username'
 						onChange={(e) => {
 							this.handleSearch(e.target.value);
 						}}
