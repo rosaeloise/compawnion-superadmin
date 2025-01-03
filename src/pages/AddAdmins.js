@@ -40,6 +40,22 @@ class AddRescuedPet extends React.Component {
 				return;
 			}
 
+			// Email validation
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailRegex.test(Email)) {
+				MySwal.fire({
+					title: <h1>Error</h1>,
+					html: <p>Invalid email format. Please enter a valid email address.</p>,
+					width: '60rem',
+					icon: 'error',
+					iconColor: 'var(--primary-color)',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				});
+				saveButton.disabled = false;
+				return;
+			}
+
 			const image = document.getElementById('imageInput')?.files[0];
 			if (image) {
 				const reader = new FileReader();
@@ -179,6 +195,10 @@ class AddRescuedPet extends React.Component {
 								id='Username'
 								name='Username'
 								placeholder='Enter Username'
+								onChange={(e) => {
+									const value = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+									e.target.value = value;
+								}}
 							/>
 							<FormInput
 								label='Email'
@@ -193,7 +213,6 @@ class AddRescuedPet extends React.Component {
 								id='Branches'
 								name='Branches'
 								placeholder='Select Branch'
-
 								options={[
 									{
 										value: 'Branch 1',
