@@ -21,7 +21,6 @@ class AdminDetail extends React.Component {
 	}
 	componentDidMount() {
 		this.fetchAdmin();
-
 	}
 	async fetchAdmin() {
 		const AdminId = location.hash.split('/').pop();
@@ -49,6 +48,52 @@ class AdminDetail extends React.Component {
 		admin.aStaffInfo.Mobilenumber = Mobilenumber;
 		admin.aStaffInfo.Branches = Branches;
 		delete admin.id;
+
+		if (!Branches || !Email || !Mobilenumber) {
+			MySwal.fire({
+				title: <h4>Error</h4>,
+				html: <p>Please fill in all fields.</p>,
+				width: '60rem',
+				icon: 'error',
+				iconColor: 'var(--primary-color)',
+				confirmButtonText: 'Ok',
+				confirmButtonColor: 'var(--primary-color)'
+			});
+			this.updateAdmin.disabled = false;
+			return;
+		}
+
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(Email)) {
+			MySwal.fire({
+				title: <h4>Error</h4>,
+				html: <>
+					<p>Invalid email format.</p>
+					<p>Please enter a valid email address.</p>
+				</>,
+				width: '60rem',
+				icon: 'error',
+				iconColor: 'var(--primary-color)',
+				confirmButtonText: 'Ok',
+				confirmButtonColor: 'var(--primary-color)'
+			});
+			this.updateAdmin.disabled = false;
+			return;
+		}
+
+		if (Mobilenumber.length < 11) {
+			MySwal.fire({
+				title: <h4>Error</h4>,
+				html: <p>Phone number must be at least 11 digits.</p>,
+				width: '60rem',
+				icon: 'error',
+				iconColor: 'var(--primary-color)',
+				confirmButtonText: 'Ok',
+				confirmButtonColor: 'var(--primary-color)'
+			});
+			this.updateAdmin.disabled = false;
+			return;
+		}
 
 		fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
 			method: 'PUT',
@@ -207,15 +252,20 @@ class AdminDetail extends React.Component {
 								/>
 								<FormInput
 									label='Phone Number'
-									type='text'
+									type='number'
 									id='Mobilenumber'
 									name='Mobilenumber'
+									placeholder='Enter Phone Number'
 									value={admin.aStaffInfo.Mobilenumber}
 									onChange={(e) => {
-										const value = e.target.value;
-										if (value.length > 11) {
+										let value = e.target.value;
+										if (!value.startsWith('09')) {
+											value = '09' + value.replace(/^09/, '');
+										}
+										e.target.value = value;
+										if (value.length > 12) {
 											e.target.value = value.slice(0, 11);
-										};
+										}
 									}}
 								/>
 							</div>
