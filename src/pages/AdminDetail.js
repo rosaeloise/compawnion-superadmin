@@ -142,7 +142,10 @@ class AdminDetail extends React.Component {
 	async deleteAdmin() {
 		MySwal.fire({
 			title: <h4>Delete Account?</h4>,
-			html: <p>This admin user account will be deleted from the database. Please confirm to proceed.</p>,
+			html: <>
+				<p>This admin user account will be deleted from the database.</p>
+				<p> Please confirm to proceed.</p>
+			</>,
 			width: '80rem',
 			icon: 'warning',
 			iconColor: '#c32626',
