@@ -58,10 +58,10 @@ class AddRescuedPet extends React.Component {
 				return;
 			}
 
-			if (Mobilenumber.length < 11) {
+			if (Mobilenumber.length !== 11) {
 				MySwal.fire({
 					title: <h4>Error</h4>,
-					html: <p>Phone number must be at least 11 digits.</p>,
+					html: <p>Phone number must be exactly 11 digits..</p>,
 					width: '60rem',
 					icon: 'error',
 					iconColor: 'var(--primary-color)',
@@ -253,10 +253,10 @@ class AddRescuedPet extends React.Component {
 									if (!value.startsWith('09')) {
 										value = '09' + value.replace(/^09/, '');
 									}
-									e.target.value = value;
-									if (value.length > 12) {
-										e.target.value = value.slice(0, 11);
+									if (value.length > 11) {
+										value = value.slice(0, 11);
 									}
+									e.target.value = value;
 								}}
 							/>
 							<FormInput
