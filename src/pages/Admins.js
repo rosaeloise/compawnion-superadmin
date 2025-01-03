@@ -1,8 +1,12 @@
 import React from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
-
 import '../css/admin.css';
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 class Admins extends React.Component {
 	constructor(props) {
@@ -110,7 +114,22 @@ class Admins extends React.Component {
 				</section>
 				<div id='logout'
 					onClick={() => {
-						window.location.hash = '/';
+						MySwal.fire({
+							title: <h4>Logout</h4>,
+							html: <p>Are you sure you want to logout?</p>,
+							width: '60rem',
+							icon: 'warning',
+							showCancelButton: true,
+							confirmButtonText: 'Yes',
+							confirmButtonColor: 'var(--primary-color)',
+							cancelButtonText: 'No',
+							cancelButtonColor: 'var(--primary-complement)'
+						}).then((result) => {
+							if (result.isConfirmed) {
+								localStorage.removeItem('token');
+								window.location.hash = '/';
+							}
+						});
 					}}
 				>
 					<svg viewBox='0 0 26 26'>
