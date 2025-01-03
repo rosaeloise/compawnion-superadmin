@@ -28,7 +28,7 @@ class AddRescuedPet extends React.Component {
 
 			if (!Name || !Username || !Branches || !Password || !Email || !Mobilenumber) {
 				MySwal.fire({
-					title: <h1>Error</h1>,
+					title: <h4>Error</h4>,
 					html: <p>Please fill in all fields.</p>,
 					width: '60rem',
 					icon: 'error',
@@ -40,12 +40,28 @@ class AddRescuedPet extends React.Component {
 				return;
 			}
 
-			// Email validation
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			if (!emailRegex.test(Email)) {
 				MySwal.fire({
-					title: <h1>Error</h1>,
-					html: <p>Invalid email format. Please enter a valid email address.</p>,
+					title: <h4>Error</h4>,
+					html: <>
+						<p>Invalid email format.</p>
+						<p>Please enter a valid email address.</p>
+					</>,
+					width: '60rem',
+					icon: 'error',
+					iconColor: 'var(--primary-color)',
+					confirmButtonText: 'Ok',
+					confirmButtonColor: 'var(--primary-color)'
+				});
+				saveButton.disabled = false;
+				return;
+			}
+
+			if (Mobilenumber.length < 11) {
+				MySwal.fire({
+					title: <h4>Error</h4>,
+					html: <p>Phone number must be at least 11 digits.</p>,
 					width: '60rem',
 					icon: 'error',
 					iconColor: 'var(--primary-color)',
@@ -87,7 +103,7 @@ class AddRescuedPet extends React.Component {
 						return res.json();
 					}).then(() => {
 						MySwal.fire({
-							title: <h1>Success</h1>,
+							title: <h4>Success</h4>,
 							html: <p>Admin added successfully.</p>,
 							width: '60rem',
 							icon: 'success',
@@ -99,13 +115,14 @@ class AddRescuedPet extends React.Component {
 						saveButton.disabled = false;
 					}).catch(err => {
 						MySwal.fire({
-							title: <h1>Error</h1>,
+							title: <h4>Error</h4>,
 							html: <>
 								<p>Failed to add admin.</p>
 								<p>{err.message}</p>
 							</>,
 							width: '60rem',
 							icon: 'error',
+							iconColor: 'var(--primary-color)',
 							confirmButtonText: 'Ok',
 							confirmButtonColor: 'var(--primary-color)'
 						});
@@ -114,7 +131,7 @@ class AddRescuedPet extends React.Component {
 				};
 			} else {
 				MySwal.fire({
-					title: <h1>Error</h1>,
+					title: <h4>Error</h4>,
 					html: <p>Please upload an image.</p>,
 					width: '60rem',
 					icon: 'error',
@@ -230,11 +247,16 @@ class AddRescuedPet extends React.Component {
 								id='Mobilenumber'
 								name='Mobilenumber'
 								placeholder='Enter Phone Number'
+								value='09'
 								onChange={(e) => {
-									const value = e.target.value;
-									if (value.length > 11) {
+									let value = e.target.value;
+									if (!value.startsWith('09')) {
+										value = '09' + value.replace(/^09/, '');
+									}
+									e.target.value = value;
+									if (value.length > 12) {
 										e.target.value = value.slice(0, 11);
-									};
+									}
 								}}
 							/>
 							<FormInput
