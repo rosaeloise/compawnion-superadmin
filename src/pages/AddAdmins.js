@@ -63,7 +63,13 @@ class AddRescuedPet extends React.Component {
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify(data)
-					}).then(res => res.json()).then(() => {
+					}).then(async res => {
+						if (!res.ok) {
+							const message = await res.json();
+							throw new Error(res.message);
+						};
+						return res.json();
+					}).then(() => {
 						MySwal.fire({
 							title: <h1>Success</h1>,
 							html: <p>Admin added successfully.</p>,
