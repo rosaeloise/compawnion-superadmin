@@ -3,6 +3,11 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import '../css/login.css';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
+
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +42,14 @@ class Login extends React.Component {
 					localStorage.setItem('token', response.token);
 				} 
 				else {
-					alert('Wrong password!');
+					MySwal.fire({
+						title: <h4>Wrong Password</h4>,
+						html: <p>Incorrect password. Please try again.</p>,
+						width: '60rem',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					});
 				};
 			})
 			.catch(err => console.error)
