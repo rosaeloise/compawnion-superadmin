@@ -137,108 +137,97 @@ class AdminDetail extends React.Component {
 				});
 				this.updateAdmin.disabled = false;
 			});
-
-		// 	fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
-		// 		method: 'PUT',
-		// 		headers: {
-		// 			'Content-Type': 'application/json'
-		// 		},
-		// 		body: JSON.stringify(admin)
-		// 	}).then(async res => {
-		// 		if (!res.ok) {
-		// 			const message = await res.json();
-		// 			throw new Error(message.message);
-		// 		};
-		// 		return res.json();
-		// 	}).then(() => {
-		// 				MySwal.fire({
-		// 					title: <h4>Success</h4>,
-		// 					html: <p>Admin updated successfully.</p>,
-		// 					width: '60rem',
-		// 					icon: 'success',
-		// 					confirmButtonText: 'Ok',
-		// 					confirmButtonColor: 'var(--primary-color)'
-		// 				}).then(() => {
-		// 				window.location.hash = '/admins';
-		// 				});
-		// 				saveButton.disabled = false;
-		// 			}).catch(err => {
-		// 				MySwal.fire({
-		// 					title: <h4>Error</h4>,
-		// 					html: <>
-		// 						<p>Failed to add admin.</p>
-		// 						<p>{err.message}</p>
-		// 					</>,
-		// 					width: '60rem',
-		// 					icon: 'error',
-		// 					iconColor: 'var(--primary-color)',
-		// 					confirmButtonText: 'Ok',
-		// 					confirmButtonColor: 'var(--primary-color)'
-		// 				});
-		// 				saveButton.disabled = false;
-		// 			});
-		// 		};
-		// 			} else {
-		// 				MySwal.fire({
-		// 					title: <h4>Failed</h4>,
-		// 					html: <p>Failed to update admin.</p>,
-		// 					width: '60rem',
-		// 					icon: 'error',
-		// 					confirmButtonText: 'Ok',
-		// 					confirmButtonColor: 'var(--primary-color)'
-		// 				});
-		// 				saveButton.disabled = false;
-		// 			};
-		// 		});
 	};
 
 	async deleteAdmin() {
 		MySwal.fire({
 			title: <h4>Delete Account?</h4>,
-			html: <p>This admin user account will be deleted from the database.</p>,
+			html: <p>This admin user account will be deleted from the database. Please confirm to proceed.</p>,
 			width: '80rem',
 			icon: 'warning',
 			iconColor: '#c32626',
 			showCancelButton: true,
-			confirmButtonText: 'Delete',
+			confirmButtonText: 'Proceed',
 			confirmButtonColor: '#c32626',
 			cancelButtonText: 'Cancel',
 			cancelButtonColor: 'var(--primary-complement)'
-		}).then(result => {
+		}).then(async (result) => {
 			if (result.isConfirmed) {
+				const { value: superadminPassword } = await MySwal.fire({
+					title: <h4>Super Admin Password</h4>,
+					html: <p>Please enter the super admin password to confirm deletion.</p>,
+					icon: 'info',
+					iconColor: 'var(--primary-color)',
+					input: 'password',
+					inputPlaceholder: 'Enter super admin password',
+					inputAttributes: {
+						'autocomplete': 'new-password',
+						'style': 'font-size: 2rem; padding: 1rem; margin-top: 1rem; color: var(--primary-complement)'
+					},
+					width: '80rem',
+					showCancelButton: true,
+					confirmButtonText: 'Delete',
+					confirmButtonColor: '#c32626',
+					cancelButtonText: 'Cancel',
+					cancelButtonColor: 'var(--primary-complement)'
+				});
+
+				if (superadminPassword === undefined) {
+					return;
+				}
+
+				if (!superadminPassword) {
+					MySwal.fire({
+						title: <h4>Error</h4>,
+						html: <p>Password field cannot be empty.</p>,
+						width: '60rem',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					});
+					return;
+				}
+
 				const AdminId = location.hash.split('/').pop();
 
-				fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
-					method: 'DELETE'
-				})
-					.then(res => res.json())
-					.then(response => {
-						if (response.message === 'Admin deleted successfully') {
-							MySwal.fire({
-								title: <h4>Success</h4>,
-								html: <p>Admin deleted successfully.</p>,
-								width: '60rem',
-								icon: 'success',
-								confirmButtonText: 'Ok',
-								confirmButtonColor: 'var(--primary-color)'
-							}).then(() => {
-								window.location.hash = '/admins';
-							});
-						} else {
-							MySwal.fire({
-								title: <h4>Failed</h4>,
-								html: <p>Failed to delete admin.</p>,
-								width: '60rem',
-								icon: 'error',
-								confirmButtonText: 'Ok',
-								confirmButtonColor: 'var(--primary-color)'
-							});
-						}
-					})
-					.catch(err => console.error);
+				try {
+					const response = await fetch(`https://compawnion-backend.onrender.com/admins/${AdminId}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ superadminPassword })
+					});
+
+					if (!response.ok) {
+						const errorData = await response.json();
+						throw new Error(errorData.message || 'Failed to delete admin');
+					}
+
+					MySwal.fire({
+						title: <h4>Success</h4>,
+						html: <p>Admin deleted successfully.</p>,
+						width: '60rem',
+						icon: 'success',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					}).then(() => {
+						window.location.hash = '/admins';
+					});
+				} catch (error) {
+					MySwal.fire({
+						title: <h4>Error</h4>,
+						html: <p>{error.message}</p>,
+						width: '60rem',
+						icon: 'error',
+						confirmButtonText: 'Ok',
+						confirmButtonColor: 'var(--primary-color)'
+					});
+				}
 			}
 		});
 	}
+
 
 	render() {
 		const { admin, loading, error } = this.state;
