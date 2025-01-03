@@ -62,7 +62,7 @@ class AdminDetail extends React.Component {
 			.then(response => {
 				if (response.message === 'Admin updated successfully') {
 					MySwal.fire({
-						title: <h1>Success</h1>,
+						title: <h4>Success</h4>,
 						html: <p>Admin updated successfully.</p>,
 						width: '60rem',
 						icon: 'success',
@@ -74,7 +74,7 @@ class AdminDetail extends React.Component {
 					saveButton.disabled = false;
 				} else {
 					MySwal.fire({
-						title: <h1>Failed</h1>,
+						title: <h4>Failed</h4>,
 						html: <p>Failed to update admin.</p>,
 						width: '60rem',
 						icon: 'error',
@@ -88,7 +88,7 @@ class AdminDetail extends React.Component {
 
 	async deleteAdmin() {
 		MySwal.fire({
-			title: <h1>Delete Account?</h1>,
+			title: <h4>Delete Account?</h4>,
 			html: <p>This admin user account will be deleted from the database.</p>,
 			width: '80rem',
 			icon: 'warning',
@@ -109,7 +109,7 @@ class AdminDetail extends React.Component {
 					.then(response => {
 						if (response.message === 'Admin deleted successfully') {
 							MySwal.fire({
-								title: <h1>Success</h1>,
+								title: <h4>Success</h4>,
 								html: <p>Admin deleted successfully.</p>,
 								width: '60rem',
 								icon: 'success',
@@ -119,7 +119,14 @@ class AdminDetail extends React.Component {
 								window.location.hash = '/admins';
 							});
 						} else {
-							alert('Failed to delete admin');
+							MySwal.fire({
+								title: <h4>Failed</h4>,
+								html: <p>Failed to delete admin.</p>,
+								width: '60rem',
+								icon: 'error',
+								confirmButtonText: 'Ok',
+								confirmButtonColor: 'var(--primary-color)'
+							});
 						}
 					})
 					.catch(err => console.error);
